@@ -119,7 +119,7 @@ We want to be able to update and delete our tasks. But before we do that we need
   <details style="padding-left: 2em">
     <summary>More about selecting an individual task</summary>
 
-    You'll want to add a new function in `db.js` that can select a row given its `id`. Look how the other functions work. You might need to review `where` from knex.
+    You'll want to add a new function in `db.js` that can select a row given its `id`. Look how the other functions work. You might need to review the documentation for the `where` query from knex.
 
     To use the new function, add a function in `commands.js` called `displayTodo` (or similar). Remember that you will need to pass an argument through from the `todo` module to so you can tell your DB function which task to select.
     
