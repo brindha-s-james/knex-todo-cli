@@ -11,7 +11,12 @@ function close() {
   db.destroy()
 }
 
+function getTodoById(id) {
+  return db('todos').where('id', id)
+}
+
 module.exports = {
   getTodos,
   close,
+  getTodoById,
 }
