@@ -5,6 +5,10 @@ function getTodos() {
   return db('todos').select()
 }
 
+function getTaskById(id) {
+  return db('todos').where('id', id)
+}
+
 // Your DB functions go here
 
 function close() {
@@ -14,4 +18,6 @@ function close() {
 module.exports = {
   getTodos,
   close,
+  getTaskById
 }
+

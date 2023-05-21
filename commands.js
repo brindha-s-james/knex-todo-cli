@@ -20,10 +20,27 @@ function printTodos(todos) {
   })
 }
 
+function printById(id) {
+  return db
+    .getTaskById(id)
+    .then((task) => {
+      printTodos(task)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
+
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
 
 module.exports = {
   list,
+  printById
 }

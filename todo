@@ -10,6 +10,11 @@ switch (cmd) {
     commands.list()
     break
 
+  case 'id':
+    commands.printById(userInputs[3])
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
+
