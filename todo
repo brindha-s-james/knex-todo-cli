@@ -10,6 +10,11 @@ switch (cmd) {
     commands.list()
     break
 
+  case 'add':
+    //commands.add()
+    console.log('Added')
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
