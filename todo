@@ -4,15 +4,15 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
+const arg = userInputs[3]
 
 switch (cmd) {
   case 'list':
     commands.list()
     break
 
-  case 'add':
-    //commands.add()
-    console.log('Added')
+  case 'display':
+    commands.display(arg)
     break
 
   default:
