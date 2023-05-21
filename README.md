@@ -112,8 +112,27 @@ We want to be able to update and delete our tasks. But before we do that we need
     
     Start by using `console.log` to explore this, and try adding more inputs to see how that changes the result (i.e. `./todo list hello testing 123`)
   </details>
+ 
+### 5. Show a task by ID
 
-### 5. Delete a task by ID
+- [ ] Enable users to display an individual task by entering a command such as `./todo display 1` which will show the task with `id` of `1`
+  <details style="padding-left: 2em">
+    <summary>More about selecting an individual task</summary>
+
+    You'll want to add a new function in `db.js` that can select a row given its `id`. Look how the other functions work. You might need to review `where` from knex.
+
+    To use the new function, add a function in `commands.js` called `displayTodo` (or similar). Remember that you will need to pass an argument through from the `todo` module to so you can tell your DB function which task to select.
+    
+    ```
+    function selectOneTodo(id) {}
+    ```
+    
+    **Additional hint**: accessing that `userInputs` array might come in handy right about now...
+
+    If it helps, look at how the `list` function is structured to give you some ideas. What is happening with those `.catch` and `.finally` bits of code? What happens when you remove the `.finally` calls?
+  </details>
+
+### 6. Delete a task by ID
 
 - [ ] Enable users to complete a task by entering a command such as `./todo done 1` which will remove the task with `id` of `1` from the database
   <details style="padding-left: 2em">
@@ -132,7 +151,7 @@ We want to be able to update and delete our tasks. But before we do that we need
     If it helps, look at how the `list` function is structured to give you some ideas. What is happening with those `.catch` and `.finally` bits of code? What happens when you remove the `.finally` calls?
   </details>
 
-### 6. Add a new task
+### 7. Add a new task
 
 It's all very well and good being able to delete tasks, but what happens when we run out of things to do?
 
@@ -143,7 +162,7 @@ It's all very well and good being able to delete tasks, but what happens when we
     You will need to add a function to `db.js` so we can insert a new task into our database, and also add a function to `commands.js` (that we will then call from our `todo` file) to make use of this.
   </details>
 
-### 7. Update a task by ID
+### 8. Update a task by ID
 
 Users make mistakes. Let them update a task.
 
@@ -158,13 +177,13 @@ Users make mistakes. Let them update a task.
 
 ## Other task interactions
 
-### 8. Add ability to search
+### 9. Add ability to search
 
 Busy people are complaining about having 200 tasks in their consoles. Add a feature that searches in the task string for a given word.
 
 - [ ] Enable users to search for tasks containing a search term by entering a command such as `./todo search 'wire'`
 
-### 9. Preparing to complete tasks (non-destructively)
+### 10. Preparing to complete tasks (non-destructively)
 
 Users want to be able to mark a task as complete without removing it from the database.
 
@@ -189,7 +208,7 @@ Users want to be able to mark a task as complete without removing it from the da
     1. Run `npm run knex seed:run` and look again.
 
 
-### 10. Finish the "mark task complete" feature
+### 11. Finish the "mark task complete" feature
 
 - [ ] Enable users to mark a task complete, without deleting it from the database
   <details style="padding-left: 2em">
