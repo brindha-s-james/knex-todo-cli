@@ -14,6 +14,20 @@ function list() {
     })
 }
 
+function listByStatus(bool) {
+  return db
+    .getTaskByStatus(bool)
+    .then((todos) => {
+      printTodos(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.task}, Completed: ${Boolean(todo.completed)}`)
@@ -120,5 +134,6 @@ module.exports = {
   addTask,
   updateTask,
   searchTasks,
-  completeTask
+  completeTask,
+  listByStatus
 }

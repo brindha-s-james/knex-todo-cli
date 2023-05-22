@@ -9,6 +9,10 @@ function getTaskById(id) {
   return db('todos').where('id', id).orWhere('task', id)
 }
 
+function getTaskByStatus(bool) {
+  return db('todos').where('completed', bool)
+}
+
 function delTaskById(id) {
   return db('todos').where('id', id).del(['id', 'task'])
 }
@@ -46,6 +50,7 @@ module.exports = {
   getTaskById,
   delTaskById,
   addTask,
-  update
+  update,
+  getTaskByStatus
 }
 
