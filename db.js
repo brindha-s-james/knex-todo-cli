@@ -33,6 +33,10 @@ function updateTask(id, str) {
   return db('todos').where('id', id).update({ task: str })
 }
 
+function searchTodos(str) {
+  return db('todos').whereLike('task', `%${str}%`)
+}
+
 module.exports = {
   getTodos,
   close,
@@ -40,5 +44,6 @@ module.exports = {
   delToDobyId,
   addTodo,
   updateTask,
+  searchTodos,
   clearTable,
 }

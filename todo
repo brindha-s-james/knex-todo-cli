@@ -38,6 +38,10 @@ switch (cmd) {
     funcs.clear(act)
     break
 
+  case 'search':
+    funcs.searchDobby(act)
+    break
+
   default:
     console.log(`bro what is ${cmd}`)
 }

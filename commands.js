@@ -89,6 +89,12 @@ function printTodos(todos) {
   })
 }
 
+function searchDobby(str) {
+  return db.searchTodos(str).then((tasks) => {
+    printTodos(tasks)
+  })
+}
+
 function logError(err) {
   console.error('User Error!', err.message)
 }
@@ -100,4 +106,5 @@ module.exports = {
   newTodo,
   updateToDo,
   clearNum,
+  searchDobby,
 }
