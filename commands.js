@@ -4,7 +4,11 @@ function list() {
   return db
     .getTodos()
     .then((todos) => {
+      if(todos.length === 0) {
+        console.log(`Nuthin' to do.`)
+      } else {
       printTodos(todos)
+      }
     })
     .catch((err) => {
       logError(err)
@@ -48,11 +52,11 @@ function printById(id) {
     })
 }
 
-function delById(id) {
+function deleter(field, id) {
   return db
-   .delTaskById(id)
+   .delTask(field, id)
     .then ((deleted) => {
-      console.log(`Successfully deleted ${deleted}`)
+      console.log(`Successfully deleted ${deleted} item(s).`)
     //   if (deleted == true) {
     //   console.log('Deleted Task ' + id)
     // } else {
@@ -130,7 +134,7 @@ function logError(err) {
 module.exports = {
   list,
   printById,
-  delById,
+  deleter,
   addTask,
   updateTask,
   searchTasks,

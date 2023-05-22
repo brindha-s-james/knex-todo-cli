@@ -13,15 +13,16 @@ function getTaskByStatus(bool) {
   return db('todos').where('completed', bool)
 }
 
-function delTaskById(id) {
-  return db('todos').where('id', id).del(['id', 'task'])
+function delTask(field, id) {
+  return db('todos').where(field, id).del(['id', 'task'])
 }
 
 function addTask(input) {
   return db('todos').insert({
-    task: input
+    task: input,
+    completed: false
   },
-  ['id', 'task']
+  ['id', 'task', 'completed']
   )
 }
 
@@ -48,7 +49,7 @@ module.exports = {
   getTodos,
   close,
   getTaskById,
-  delTaskById,
+  delTask,
   addTask,
   update,
   getTaskByStatus

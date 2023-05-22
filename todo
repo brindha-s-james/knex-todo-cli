@@ -17,7 +17,9 @@ switch (cmd) {
     break
   
   case 'del':
-    commands.delById(userInputs[3])
+    if (userInputs[3] === '-c') { commands.deleter('completed', true) } else if (userInputs[3] === '-i') { commands.deleter('completed', false) } else {
+      commands.deleter('id', userInputs[3])
+      }
     break
 
   case 'add':
