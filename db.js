@@ -16,11 +16,15 @@ function deleteTaskById(id){
 }
 
 function addTasktoTodo(newTask){
- return db('todos').insert({ task: newTask })
+ return db('todos').insert({ task: newTask, completed: false })
 }
 
 function updateTaskById(id, input){
   return db('todos').where('id', id).update({task: input})
+}
+
+function completeTaskById(id){
+  return db('todos').where('id', id).update({completed: true})
 }
 
 function searchByWord(searchWord){
@@ -38,5 +42,6 @@ module.exports = {
   deleteTaskById,
   addTasktoTodo,
   updateTaskById,
-  searchByWord
+  searchByWord,
+  completeTaskById
 }

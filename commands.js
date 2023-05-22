@@ -16,7 +16,7 @@ function list() {
 
 function printTodos(todos) {
   todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task}`)
+    console.info(`${todo.id}: ${todo.task} ${todo.completed}`)
   })
 }
 
@@ -82,6 +82,19 @@ function update(id, input){
   })
 }
 
+function complete(id){
+  return db.completeTaskById(id)
+  .then((completeTask) =>{
+    console.log(completeTask)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 function searchTask(searchWord){
   return db.searchByWord(searchWord)
   .then((searchWord) =>{
@@ -101,5 +114,6 @@ module.exports = {
   displayTodo,
   deleteTask,
   update,
-  searchTask
+  searchTask,
+  complete
 }
