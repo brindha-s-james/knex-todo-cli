@@ -23,10 +23,15 @@ function addTodo(str) {
   return db('todos').insert({ task: str })
 }
 
+function updateTask(id, str) {
+  return db('todos').where('id', id).update({ task: str })
+}
+
 module.exports = {
   getTodos,
   close,
   getTodoById,
   delToDobyId,
   addTodo,
+  updateTask,
 }
