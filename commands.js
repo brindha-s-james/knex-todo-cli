@@ -102,7 +102,9 @@ function priority() {
   return db
     .showPriority()
     .then((todos) => {
-      console.log(todos)
+      todos.forEach((todo) => {
+        console.info(`${todo.id}: ${todo.jobs}`)
+      })
     })
     .catch((err) => {
       logError(err)
