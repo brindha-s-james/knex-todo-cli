@@ -17,7 +17,7 @@ function list() {
 
 function printTodos(todos) {
   todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task}`)
+ //   console.info(`${todo.id}: ${todo.task}`)
   })
 }
 
@@ -98,6 +98,37 @@ function searchByWord(word) {
     })
 }
 
+
+//check if a task is compleate
+function checkTaskCompleted(id) {
+  return db.isTaskCompleted(id)
+    .then((completed) => {
+      if (completed) {
+        console.log(`Task #${id} is completed.`);
+      } else {
+        console.log(`Task #${id} is not completed.`);
+      }
+    })
+    .catch((err) => {
+      logError(err);
+    })
+    .finally(() => {
+      db.close();
+    });
+}
+
+
+// function completeTask (id) {
+//   return db.completeTask(id)
+//   .then(() => {
+//     console.log(`task #${id} has been completed`)
+//   })
+//   .catch(err => console.log(err.message))
+//   .finally(() => {
+//     db.close()
+//   })
+// }
+
 module.exports = {
   list,
   printTodos,
@@ -106,5 +137,6 @@ module.exports = {
   deleteToDo,
   addNewTask,
   updateTodo,
-  searchByWord
+  searchByWord,
+  checkTaskCompleted
 }

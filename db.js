@@ -42,6 +42,29 @@ function updateTask(id, str) {
 function searchTaskByWord(word) {
   return db('todos').select().whereLike('task', `%${word}%`)
 }
+
+
+//check for task compleation
+function isTaskCompleted(id) {
+  return db('todos')
+    .where('id', id)
+    .select('Completed')
+    .first()
+    .then((row) => {
+      if (row && row.Completed) {
+        return true
+      } else {
+        return false
+      }
+    });
+}
+
+// function taskCompleate(id) {
+//   return db('todos')
+//   .where('id', id)
+//   .update({Completed: true})
+// }
+
 module.exports = {
   getTodos,
   close,
@@ -50,4 +73,5 @@ module.exports = {
   addNewTaskTodo,
   updateTask,
   searchTaskByWord,
+  isTaskCompleted
 }

@@ -43,6 +43,11 @@ switch (cmd) {
       commands.searchByWord(id)
       break
 
+    //check if a task is compleate ./todo compleated id
+    case 'completed':
+      commands.checkTaskCompleted(id)
+      break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
