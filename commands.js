@@ -1,5 +1,6 @@
 const db = require('./db')
 
+//prints all todos//
 function list() {
   return db
     .getTodos()
@@ -20,10 +21,8 @@ function printTodos(todos) {
   })
 }
 
+//prints todo by id//
 function displayId(input) {
-  //send the id to the db.js (getids func)
-  //return the data for specific id
-  //use a promise to print out that info in terminal
   const id = input
   return db
     .getTaskById(id)
@@ -38,6 +37,22 @@ function displayId(input) {
     })
 }
 
+//prints todo by owner
+function displayTaskByOwner(input) {
+  return db
+    .getTaskByOwner(input)
+    .then((todos) => {
+      console.log(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
+//deletes task by id//
 function deleteTask(input) {
   const id = input
   displayId(id)
@@ -54,10 +69,10 @@ function deleteTask(input) {
     })
 }
 
-function insertTask(input) {
-  const task = input
+//inserts task//
+function insertTask(owner, task) {
   return db
-    .insertNewTask(task)
+    .insertNewTask(owner, task)
     .then((todos) => {
       console.log('task added')
       displayId(todos[0])
@@ -68,7 +83,7 @@ function insertTask(input) {
     .finally(() => db.close())
 }
 
-// pass the id in edit, then find the id to update
+//edits task by id
 function editTask(input, edit) {
   const id = input
   return db
@@ -83,7 +98,7 @@ function editTask(input, edit) {
     .finally(() => db.close)
 }
 
-//search function
+//searches task by string input//
 function searchTask(input) {
   return db
     .searchTask(input)
@@ -96,6 +111,7 @@ function searchTask(input) {
     .finally(db.close)
 }
 
+//marks task as complete (true)//
 function completeTask(input) {
   return db
     .completeTask(input)
@@ -109,6 +125,7 @@ function completeTask(input) {
     .finally(db.close)
 }
 
+//logs err message//
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -121,4 +138,5 @@ module.exports = {
   editTask,
   searchTask,
   completeTask,
+  displayTaskByOwner,
 }

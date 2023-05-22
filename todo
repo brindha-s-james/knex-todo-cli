@@ -16,13 +16,20 @@ switch (cmd) {
     commands.displayId(input)
     break
 
-  case 'deleteTask':
+  case 'displayOwner':
+    commands.displayTaskByOwner(input)
+    break
+
+  case 'delete':
     commands.deleteTask(input)
     break
 
-  case 'insertTask':
-    commands.insertTask(input)
+  case 'insert': {
+    const owner = input
+    const task = edit
+    commands.insertTask(owner, task)
     break
+  }
 
   case 'update':
     commands.editTask(input, edit)

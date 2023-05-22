@@ -5,18 +5,20 @@ function getTodos() {
   return db('todos').select()
 }
 
-//GET IDs from todos//
-
 function getTaskById(id) {
   return db('todos').where('id', id)
+}
+
+function getTaskByOwner(input) {
+  return db('todos').where('owner', input)
 }
 
 function deleteTaskbyId(id) {
   return db('todos').where('id', id).del()
 }
 
-function insertNewTask(task) {
-  return db('todos').insert({ owner: 'tayla', task: task, complete: false })
+function insertNewTask(owner, task) {
+  return db('todos').insert({ owner: owner, task: task, complete: false })
 }
 
 function editTask(id, edit) {
@@ -45,4 +47,5 @@ module.exports = {
   editTask,
   searchTask,
   completeTask,
+  getTaskByOwner,
 }
