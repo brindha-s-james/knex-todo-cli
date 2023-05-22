@@ -15,6 +15,10 @@ switch (cmd) {
     commands.display(arg)
     break
 
+  case 'done':
+    commands.taskDone(arg)
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

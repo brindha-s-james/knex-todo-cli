@@ -14,6 +14,20 @@ function list() {
     })
 }
 
+function taskDone(id) {
+  return db
+    .delTodo(id)
+    .then(() => {
+      console.log("Deleted task with ID: " + id)
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function display(id) {
   return db
     .getTodo(id)
@@ -40,5 +54,6 @@ function logError(err) {
 
 module.exports = {
   list,
-  display
+  display,
+  taskDone
 }

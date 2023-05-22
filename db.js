@@ -11,6 +11,12 @@ function getTodo(id){
   .where('id', id)
 }
 
+function delTodo(id) {
+  return db('todos')
+  .where('id', id)
+  .del()
+}
+
 // Your DB functions go here
 
 function close() {
@@ -22,5 +28,6 @@ function close() {
 module.exports = {
   getTodos,
   close,
-  getTodo
+  getTodo,
+  delTodo
 }
