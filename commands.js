@@ -80,6 +80,18 @@ function updateTodo(id, input) {
     })
 }
 
+function searchTodo(query) {
+  return db.searchRows(query)
+  .then((todo) => {
+    return console.log(`${todo.id}: ${todo.name}`)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+      db.close()
+    })
+}
 
 module.exports = {
   list,
@@ -87,4 +99,5 @@ module.exports = {
   deleteTodo,
   addTodo,
   updateTodo,
+  searchTodo
 }

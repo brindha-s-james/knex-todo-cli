@@ -23,6 +23,11 @@ function updateRow(idNum, updatedTask){
   return db("todos").where('id', idNum).update("name", updatedTask)
 }
 
+function searchRows(searchInput){
+  return db("todos").whereLike('name', `%${searchInput}%`).first()
+}
+
+
 function close() {
   db.destroy()
 }
@@ -35,4 +40,5 @@ module.exports = {
   deleteRow,
   addRow, 
   updateRow,
+  searchRows
 }
