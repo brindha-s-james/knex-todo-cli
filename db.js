@@ -10,7 +10,11 @@ function close() {
 }
 
 // Your DB functions go here
-function selectOneTodo(id) {
+function selectOne(id) {
+  return db('todo').where('id', id).select()
+}
+
+function deleteTodo(id) {
   id = +id
   return db('todo')
     .select()
@@ -20,9 +24,10 @@ function selectOneTodo(id) {
 
       todos.forEach((todo) => {
         if (todo.id === id) {
-          console.info(`${todo.id}: ${todo.jobs}`)
+          todo.del()
         }
       })
+      console.log(todos)
       db.destroy()
     })
     .catch((err) => {
@@ -34,5 +39,6 @@ function selectOneTodo(id) {
 module.exports = {
   getTodos,
   close,
-  selectOneTodo,
+  selectOne,
+  deleteTodo,
 }

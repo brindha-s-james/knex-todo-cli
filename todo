@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const commands = require('./commands')
-const dbjs = require('./db')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
@@ -13,8 +12,13 @@ switch (cmd) {
     commands.list()
     break
   case 'selectOneTodo':
-    dbjs.selectOneTodo(firstParam)
+    commands.selectOneTodo(firstParam)
     break
-  default:
+
+case 'deleteTodo':
+  commands.deleteTodo(firstParam)
+  break
+
+default:
     console.log(`I don't understand that command: ${cmd}`)
 }
