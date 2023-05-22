@@ -93,7 +93,7 @@ function searchTask(input) {
     .catch((err) => {
       logError(err)
     })
-    .finally(() => db.close)
+    .finally(db.close)
 }
 
 function logError(err) {
