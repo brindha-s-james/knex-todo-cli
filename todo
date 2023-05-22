@@ -32,6 +32,10 @@ switch (cmd) {
     commands.findTheJob(firstParam)
     break
 
+  case 'complete':
+    commands.completeJob(firstParam)
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

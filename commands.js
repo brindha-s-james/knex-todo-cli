@@ -84,6 +84,20 @@ function findTheJob(job) {
     })
 }
 
+function completeJob(job){
+  return db
+    .complete(job)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.jobs}`)
@@ -101,4 +115,5 @@ module.exports = {
   addJob,
   updateJob,
   findTheJob,
+  completeJob
 }

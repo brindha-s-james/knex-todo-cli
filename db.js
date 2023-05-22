@@ -32,6 +32,10 @@ function findJob(job) {
   return db('todo').whereLike('jobs', `%${job}%`).select()
 }
 
+function complete(id) {
+  return db('todo').where('id', id).select().update({ job_complete: true })
+}
+
 module.exports = {
   getTodos,
   close,
@@ -40,4 +44,5 @@ module.exports = {
   addRow,
   editRow,
   findJob,
+  complete,
 }
