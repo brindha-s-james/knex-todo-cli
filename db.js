@@ -28,7 +28,8 @@ function addTodo(id, task){
   .insert({
     id: id,
     task: task,
-    Completed: false
+    Completed: false,
+    priority: 'low'
   })
   .into('todos')
 }
