@@ -17,6 +17,10 @@ switch (cmd) {
   case 'delete' :
     commands.deleteTodo(userInputs[3])
     break
+
+  case 'add':
+    commands.addTodo(userInputs[3])
+    break
   
   default:
     console.log(`I don't understand that command: ${cmd}`)

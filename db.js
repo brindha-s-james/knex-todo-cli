@@ -15,6 +15,9 @@ function deleteRow(idNum) {
   return db('todos').where('id', idNum ).del()
 }
 
+function addRow(newTask) {
+  return db('todos').insert(newTask)
+}
 
 function close() {
   db.destroy()
@@ -26,4 +29,5 @@ module.exports = {
   close,
   displayRow,
   deleteRow,
+  addRow
 }

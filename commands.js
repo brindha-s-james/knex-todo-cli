@@ -51,9 +51,26 @@ function deleteTodo(idNum) {
     })
 }
 
+function addTodo(input) {
+  const newTask = {
+    name: input
+  }
+  return db.addRow(newTask)
+  .then(() => {
+    return list()
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+      db.close()
+    })
+}
+
 
 module.exports = {
   list,
   displayTodo,
   deleteTodo,
+  addTodo
 }
