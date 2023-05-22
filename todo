@@ -6,6 +6,7 @@ const userInputs = process.argv
 const cmd = userInputs[2]
 //const id =typeof userInputs[3]? 'number':  
 const arg = userInputs[3]
+const arg2 = userInputs[4]
 
 
 
@@ -21,6 +22,9 @@ switch (cmd) {
       break
     case 'delete':
     commands.deleteTask(arg)
+    break
+    case 'update':
+    commands.update(arg, arg2)
     break
   default:
     console.log(`I don't understand that command: ${cmd}`)

@@ -69,9 +69,23 @@ function add(newTask){
     })
 }
 
+function update(id, input){
+  return db.updateTaskById(id, input)
+  .then((updatedTask) =>{
+    console.log(updatedTask)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 module.exports = {
   list,
   add,
   displayTodo,
-  deleteTask
+  deleteTask,
+  update
 }
