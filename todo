@@ -4,10 +4,17 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
+// added userId
+const userId = userInputs[3]
 
 switch (cmd) {
   case 'list':
     commands.list()
+    break
+
+  //added switch case to run the command
+  case 'display':
+    commands.selectOneTodo(userId)
     break
 
   default:

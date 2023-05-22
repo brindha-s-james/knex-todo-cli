@@ -1,3 +1,4 @@
+// THE FILE WHERE WE DECIDE WHAT TO DO & IN WHAT ORDER
 const db = require('./db')
 
 function list() {
@@ -24,6 +25,24 @@ function logError(err) {
   console.error('Uh oh!', err.message)
 }
 
+//added for getTodoById
+function selectOneTodo(id) {
+  return db
+    .gettodoById(id)
+    .then((todos) => {
+      printTodos(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 module.exports = {
   list,
+  printTodos,
+  logError,
+  selectOneTodo,
 }

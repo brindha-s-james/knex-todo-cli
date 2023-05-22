@@ -1,3 +1,6 @@
+const { printTodos, logError } = require('./commands')
+
+// THIS IS WHERE WE INTERACT WITH THE DATABASE (3)
 const config = require('./knexfile').development
 const db = require('knex')(config)
 
@@ -11,7 +14,13 @@ function close() {
   db.destroy()
 }
 
+//added for selectOneTodo // selects a row givin its ID
+function getTodoById(id) {
+  return db('todos').where('id', id)
+}
+
 module.exports = {
   getTodos,
   close,
+  getTodoById,
 }
