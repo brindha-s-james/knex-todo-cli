@@ -40,7 +40,7 @@ function updateTask(id, str) {
 //    The % wildcard characters before and after the word variable mean that the word
 //     can appear anywhere within the task column value.
 function searchTaskByWord(word) {
-  return db('todos').where('task', `%${word}%`)
+  return db('todos').select().whereLike('task', `%${word}%`)
 }
 module.exports = {
   getTodos,

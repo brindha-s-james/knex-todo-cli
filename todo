@@ -10,7 +10,7 @@ const cmd = userInputs[2]
 // added userId
 const id = userInputs[3]
 const taskStr = userInputs[4]
-const word = userInputs[5]
+//const word = userInputs[5]
 
 
 //switch statment of comands to use. calling the comands.js functions
@@ -38,8 +38,9 @@ switch (cmd) {
       commands.updateTodo(id, taskStr)
       break
 
+      // search for a task by word using ./todo search ' examplelunch'
     case 'search':
-      commands.searchByWord(word)
+      commands.searchByWord(id)
       break
 
   default:
