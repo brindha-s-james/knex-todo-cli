@@ -42,6 +42,20 @@ function deleteToDo(id) {
     })
 }
 
+function newTodo(str) {
+  return db
+    .addTodo(str)
+    .then((todos) => {
+      printTodos(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -56,4 +70,5 @@ module.exports = {
   list,
   displayTodo,
   deleteToDo,
+  newTodo,
 }

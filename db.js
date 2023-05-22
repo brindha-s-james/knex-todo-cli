@@ -19,9 +19,14 @@ function delToDobyId(id) {
   return db('todos').where('id', id).del()
 }
 
+function addTodo(str) {
+  return db('todos').insert({ task: str })
+}
+
 module.exports = {
   getTodos,
   close,
   getTodoById,
   delToDobyId,
+  addTodo,
 }
