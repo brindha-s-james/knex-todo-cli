@@ -68,6 +68,21 @@ function insertTask(input) {
     .finally(() => db.close())
 }
 
+// pass the id in edit, then find the id to update
+function editTask(input, edit) {
+  const id = input
+  return db
+    .editTask(id, edit)
+    .then((todos) => {
+      console.log('task updated')
+      displayId(id)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => db.close)
+}
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -77,4 +92,5 @@ module.exports = {
   displayId,
   deleteTask,
   insertTask,
+  editTask,
 }

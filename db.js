@@ -19,6 +19,9 @@ function insertNewTask(task) {
   return db('todos').insert({ owner: 'tayla', task: task, complete: false })
 }
 
+function editTask(id, edit) {
+  return db('todos').where('id', id).update({ task: edit })
+}
 // Your DB functions go here
 
 function close() {
@@ -31,4 +34,5 @@ module.exports = {
   getTaskById,
   deleteTaskbyId,
   insertNewTask,
+  editTask,
 }
