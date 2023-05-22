@@ -7,11 +7,12 @@ function getTodos() {
 
 // Your DB functions go here
 
-function showTask(id){
-  // db.from('todos')
-  // db.select('id'==id)
+function showTaskById(id){
  return db('todos').where('id', id)
-  
+}
+
+function deleteTaskById(id){
+ return db('todos').where('id', id).del()
 }
 
 function close() {
@@ -21,5 +22,6 @@ function close() {
 module.exports = {
   getTodos,
   close,
-  showTask
+  showTaskById,
+  deleteTaskById
 }

@@ -24,13 +24,9 @@ function add( ){
 console.log('add')
 }
 
-// function selectOneTodo(id) {
-  
-// }
-
 function displayTodo(id){
  return db
- .showTask(id)
+ .showTaskById(id)
  .then((task) => {
   console.log(task)
 })
@@ -43,6 +39,20 @@ function displayTodo(id){
 }
 
 
+function deleteTask(id){
+  return db
+  .deleteTaskById(id)
+  .then((task) => {
+    console.log('Deleted:' + (task))
+  })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+    }
+
 
 function logError(err) {
   console.error('Uh oh!', err.message)
@@ -51,5 +61,6 @@ function logError(err) {
 module.exports = {
   list,
   add,
-  displayTodo
+  displayTodo,
+  deleteTask
 }
