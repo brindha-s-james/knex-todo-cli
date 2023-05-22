@@ -7,16 +7,25 @@ const cmd = userInputs[2]
 // added userId
 const id = userInputs[3]
 
+
 switch (cmd) {
   case 'list':
     commands.list()
     break
 
-  //added switch case to run the command
+  //added switch case to run the command ./todo display (enter id here)
   case 'display':
     commands.selectOneTodo(id)
     break
+//added to delete is using ./todo delete (enter id here)
+  case 'delete':
+    commands.deleteToDo(id)
+    break
 
+    //added to add another task ./todo add 'enter new task'
+  case 'add':
+    commands.addNewTask(id)
+    break
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

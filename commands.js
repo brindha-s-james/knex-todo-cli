@@ -40,9 +40,41 @@ function selectOneTodo(id) {
     })
 }
 
+
+//added for delete and id
+function deleteToDo(id) {
+  return db.DeleteTodoById(id)
+  .then((todos) => {
+    printTodos(todos)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close
+  })
+}
+
+//add new task
+
+function addNewTask(str) {
+  return db.addNewTaskTodo(str)
+  .then((todos) => {
+    printTodos(todos)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close
+  })
+}
+
 module.exports = {
   list,
   printTodos,
   logError,
   selectOneTodo,
+  deleteToDo,
+  addNewTask
 }
