@@ -37,6 +37,20 @@ function displayId(id) {
     })
 }
 
+function deleteTask(id) {
+  return db
+    .deleteTaskbyId(id)
+    .then((todos) => {
+      console.log('task ' + todos + 'has been deleted')
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -44,4 +58,5 @@ function logError(err) {
 module.exports = {
   list,
   displayId,
+  deleteTask,
 }

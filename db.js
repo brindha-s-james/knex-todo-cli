@@ -11,6 +11,14 @@ function getTaskById(id) {
   return db('todos').where('id', id)
 }
 
+function deleteTaskbyId(id) {
+  return db('todos').where('id', id)
+  .del()
+}
+
+
+
+
 // Your DB functions go here
 
 function close() {
@@ -21,4 +29,5 @@ module.exports = {
   getTodos,
   close,
   getTaskById,
+  deleteTaskbyId,
 }
