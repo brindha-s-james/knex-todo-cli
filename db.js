@@ -23,6 +23,10 @@ function updateTaskById(id, input){
   return db('todos').where('id', id).update({task: input})
 }
 
+function searchByWord(searchWord){
+  return db('todos').whereLike('task', `%${searchWord}%`)
+}
+
 function close() {
   db.destroy()
 }
@@ -33,5 +37,6 @@ module.exports = {
   showTaskById,
   deleteTaskById,
   addTasktoTodo,
-  updateTaskById
+  updateTaskById,
+  searchByWord
 }

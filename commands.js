@@ -82,10 +82,24 @@ function update(id, input){
   })
 }
 
+function searchTask(searchWord){
+  return db.searchByWord(searchWord)
+  .then((searchWord) =>{
+    console.log(searchWord)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 module.exports = {
   list,
   add,
   displayTodo,
   deleteTask,
-  update
+  update,
+  searchTask
 }
