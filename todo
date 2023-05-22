@@ -8,7 +8,7 @@ const firstParam = userInputs[3]
 const secondParam = userInputs[4]
 console.log(userInputs)
 
-switch (cmd) {
+switch (cmd) { // I think you understand these Brindha but if not just let me know.
   case 'list':
     commands.list()
     break

@@ -1,5 +1,10 @@
 const db = require('./db')
 
+// These are basically just running the functions from the other file so like:
+// .getTodos()
+// .selectOne()
+// etc...
+
 function list() {
   return db
     .getTodos()
