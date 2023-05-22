@@ -27,6 +27,13 @@ function taskDone(id) {
       db.close()
     })
 }
+function addTodo(id, task){
+  return db.addTodo(id, task)
+  .then(() => {
+    console.log("I have added " + task + " to the todo list ")
+  })
+  .catch
+}
 
 function display(id) {
   return db

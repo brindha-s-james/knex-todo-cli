@@ -23,11 +23,21 @@ function close() {
   db.destroy()
 }
 
+function addTodo(id, task){
+  return db
+  .insert({
+    id: id,
+    task: task,
+  })
+  .into('todos')
+}
+
 
 
 module.exports = {
   getTodos,
   close,
   getTodo,
-  delTodo
+  delTodo,
+  addTodo
 }
