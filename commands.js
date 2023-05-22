@@ -32,7 +32,25 @@ function addTodo(id, task){
   .then(() => {
     console.log("I have added " + task + " to the todo list ")
   })
-  .catch
+  .catch((err) => {
+    console.log(err.message)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
+function updateTask(id, task) {
+  return db.updateTask(id, task)
+  .then(() => {
+    console.log(`I have updated task #${id} to be ${task}`)
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
+  .finally(() => {
+    db.close()
+  })
 }
 
 function display(id) {
@@ -62,5 +80,7 @@ function logError(err) {
 module.exports = {
   list,
   display,
-  taskDone
+  taskDone,
+  addTodo,
+  updateTask
 }

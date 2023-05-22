@@ -32,6 +32,12 @@ function addTodo(id, task){
   .into('todos')
 }
 
+function updateTask(id, task) {
+  return db('todos')
+  .where('id', id)
+  .update({task: task})
+}
+
 
 
 module.exports = {
@@ -39,5 +45,6 @@ module.exports = {
   close,
   getTodo,
   delTodo,
-  addTodo
+  addTodo,
+  updateTask
 }
