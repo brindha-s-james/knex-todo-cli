@@ -6,8 +6,9 @@ const cmd = userInputs[2]
 const arg1 = userInputs[3]
 const arg2 = userInputs[4]
 
-
-cmd == 'list'
+cmd == 'list' && arg1 == 'incomplete'
+? commands.incompleteList()
+: cmd == 'list'
 ? commands.list()
 : cmd== 'add' 
 ? commands.add(arg1)

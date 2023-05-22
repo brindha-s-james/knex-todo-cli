@@ -31,6 +31,10 @@ function searchByWord(searchWord){
   return db('todos').whereLike('task', `%${searchWord}%`)
 }
 
+function sortByIncomplete(){
+  return db('todos').where('completed', false)
+}
+
 function close() {
   db.destroy()
 }
@@ -43,5 +47,6 @@ module.exports = {
   addTasktoTodo,
   updateTaskById,
   searchByWord,
-  completeTaskById
+  completeTaskById,
+  sortByIncomplete
 }

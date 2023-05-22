@@ -102,6 +102,19 @@ function searchTask(searchWord){
   })
 }
 
+function incompleteList(){
+  return db.sortByIncomplete()
+  .then((task) => {
+   console.log(task)
+ })
+ .catch((err) => {
+   logError(err)
+ })
+ .finally(() => {
+   db.close()
+ })
+}
+
 //prints format of todos
 function printTodos(todos) {
   todos.forEach((todo) => {
@@ -124,5 +137,6 @@ module.exports = {
   deleteTask,
   update,
   searchTask,
-  complete
+  complete,
+  incompleteList
 }
