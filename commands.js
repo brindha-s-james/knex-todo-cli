@@ -28,9 +28,9 @@ function logError(err) {
 //added for getTodoById
 function selectOneTodo(id) {
   return db
-    .gettodoById(id)
-    .then((todos) => {
-      printTodos(todos)
+    .getTodoById(id)
+    .then((task) => {
+      printTodos(task)
     })
     .catch((err) => {
       logError(err)
