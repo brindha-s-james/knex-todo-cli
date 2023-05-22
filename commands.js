@@ -84,11 +84,25 @@ function findTheJob(job) {
     })
 }
 
-function completeJob(job){
+function completeJob(job) {
   return db
     .complete(job)
     .then((data) => {
       console.log(data)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
+function priority() {
+  return db
+    .showPriority()
+    .then((todos) => {
+      console.log(todos)
     })
     .catch((err) => {
       logError(err)
@@ -115,5 +129,6 @@ module.exports = {
   addJob,
   updateJob,
   findTheJob,
-  completeJob
+  completeJob,
+  priority,
 }

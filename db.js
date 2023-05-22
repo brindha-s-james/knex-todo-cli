@@ -36,6 +36,10 @@ function complete(id) {
   return db('todo').where('id', id).select().update({ job_complete: true })
 }
 
+function showPriority() {
+  return db('todo').whereNull('job_complete').select()
+}
+
 module.exports = {
   getTodos,
   close,
@@ -45,4 +49,5 @@ module.exports = {
   editRow,
   findJob,
   complete,
+  showPriority,
 }
