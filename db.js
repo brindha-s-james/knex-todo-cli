@@ -19,6 +19,12 @@ function delToDobyId(id) {
   return db('todos').where('id', id).del()
 }
 
+function clearTable(id) {
+  for (let i = 0; i < id; i++) {
+    delToDobyId(i)
+  }
+}
+
 function addTodo(str) {
   return db('todos').insert({ task: str })
 }
@@ -34,4 +40,5 @@ module.exports = {
   delToDobyId,
   addTodo,
   updateTask,
+  clearTable,
 }

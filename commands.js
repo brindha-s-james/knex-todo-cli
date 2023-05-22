@@ -31,8 +31,21 @@ function displayTodo(id) {
 function deleteToDo(id) {
   return db
     .delToDobyId(id)
-    .then((todos) => {
-      printTodos(todos)
+    .then(() => {
+      console.log(`Entry ${id} has been deleted`)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+function clearNum(num) {
+  return db
+    .clearTable(num)
+    .then(() => {
+      console.log(`WHAT HAVE YOU DONE??`)
     })
     .catch((err) => {
       logError(err)
@@ -46,7 +59,7 @@ function newTodo(str) {
   return db
     .addTodo(str)
     .then((todos) => {
-      printTodos(todos)
+      console.log(`"${str}" has been added (ID ${todos})`)
     })
     .catch((err) => {
       logError(err)
@@ -59,8 +72,8 @@ function newTodo(str) {
 function updateToDo(id, str) {
   return db
     .updateTask(id, str)
-    .then((todos) => {
-      printTodos(todos)
+    .then(() => {
+      console.log(`Entry ${id} has been updated to "${str}".`)
     })
     .catch((err) => {
       logError(err)
@@ -71,13 +84,13 @@ function updateToDo(id, str) {
 }
 
 function printTodos(todos) {
-  todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task}`)
+  todos.forEach((todos) => {
+    console.info(`${todos.id}: ${todos.task}`)
   })
 }
 
 function logError(err) {
-  console.error('Uh oh!', err.message)
+  console.error('User Error!', err.message)
 }
 
 module.exports = {
@@ -86,4 +99,5 @@ module.exports = {
   deleteToDo,
   newTodo,
   updateToDo,
+  clearNum,
 }

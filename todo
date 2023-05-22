@@ -1,33 +1,43 @@
 #!/usr/bin/env node
 
-const commands = require('./commands')
+const funcs = require('./commands')
 
 const userInputs = process.argv
+
 const cmd = userInputs[2]
-const userId = userInputs[3]
-const userStr = userInputs[4]
+
+// first action after running command
+const act = userInputs[3]
+
+// second action after running command (only used in update)
+const upAct = String(userInputs[4])
 
 switch (cmd) {
   case 'list':
-    commands.list()
+    funcs.list()
     break
 
   case 'idsearch':
-    commands.displayTodo(userId)
+    funcs.displayTodo(act)
+
     break
 
   case 'done':
-    commands.deleteToDo(userId)
+    funcs.deleteToDo(act)
     break
 
   case 'add':
-    commands.newTodo(userId)
+    funcs.newTodo(act)
     break
 
   case 'update':
-    commands.updateToDo(userId, userStr)
+    funcs.updateToDo(act, upAct)
+    break
+
+  case 'clear':
+    funcs.clear(act)
     break
 
   default:
-    console.log(`I don't understand that command: ${cmd}`)
+    console.log(`bro what is ${cmd}`)
 }
