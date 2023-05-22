@@ -20,9 +20,6 @@ function printTodos(todos) {
   })
 }
 
-function add( ){
-console.log('add')
-}
 
 function displayTodo(id){
  return db
@@ -43,7 +40,7 @@ function deleteTask(id){
   return db
   .deleteTaskById(id)
   .then((task) => {
-    console.log('Deleted:' + (task))
+    console.log('Deleted')
   })
     .catch((err) => {
       logError(err)
@@ -51,11 +48,25 @@ function deleteTask(id){
     .finally(() => {
       db.close()
     })
-    }
+  }
 
+  
+  function logError(err) {
+    console.error('Uh oh!', err.message)
+}
 
-function logError(err) {
-  console.error('Uh oh!', err.message)
+function add(newTask){
+  return db
+  .addTasktoTodo(newTask)
+  .then((newTask) => {
+    console.log('Added:' + (newTask))
+  })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
 }
 
 module.exports = {

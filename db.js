@@ -15,6 +15,10 @@ function deleteTaskById(id){
  return db('todos').where('id', id).del()
 }
 
+function addTasktoTodo(newTask){
+ return db('todos').insert({ task: newTask })
+}
+
 function close() {
   db.destroy()
 }
@@ -23,5 +27,6 @@ module.exports = {
   getTodos,
   close,
   showTaskById,
-  deleteTaskById
+  deleteTaskById,
+  addTasktoTodo
 }
