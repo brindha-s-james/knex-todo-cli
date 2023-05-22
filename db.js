@@ -40,9 +40,10 @@ function updateTask(id, task) {
 
 function findTask(task){
   return db('todos')
-  .select()
-  .where('task', task)
+  .whereLike('task', `%${task}%`)
 }
+
+
 
 
 

@@ -70,8 +70,10 @@ function display(id) {
 function findTask(task){
   return db
   .findTask(task)
-  .then((todo) => {
-    console.log(`${todo[0].id}: ${todo[0].task}`)
+  .then((tasks) => {
+    tasks.forEach(task => 
+    console.log(`${task.id}: ${task.task}`)
+    )
   })
   .catch((err) => {
     console.log(err.message)

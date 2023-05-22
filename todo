@@ -32,7 +32,7 @@ switch (cmd) {
   case 'search':
     commands.findTask(id)
     break
-
+  
 
   default:
     console.log(`I don't understand that command: ${cmd}`)
