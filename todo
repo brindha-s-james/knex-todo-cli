@@ -29,7 +29,11 @@ switch (cmd) {
   case 'search':
     commands.searchTodo(userInputs[3])
     break
-    
+  
+  case "complete":
+    commands.markTaskComplete(userInputs[3])
+    break 
+  
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

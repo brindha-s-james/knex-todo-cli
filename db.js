@@ -27,6 +27,9 @@ function searchRows(searchInput){
   return db("todos").whereLike('name', `%${searchInput}%`).first()
 }
 
+function completeTaskRow(searchInput){
+  return db("todos").where('name', searchInput ).update("completed", true)
+}
 
 function close() {
   db.destroy()
@@ -40,5 +43,6 @@ module.exports = {
   deleteRow,
   addRow, 
   updateRow,
-  searchRows
+  searchRows,
+  completeTaskRow,
 }

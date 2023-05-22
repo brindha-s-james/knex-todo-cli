@@ -16,7 +16,7 @@ function list() {
 
 function printTodos(todos) {
   todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.name}`)
+    console.info(`${todo.id}: ${todo.name}. Completed? ${Boolean(todo.completed)}`)
   })
 }
 
@@ -93,11 +93,25 @@ function searchTodo(query) {
     })
 }
 
+function markTaskComplete(input){
+  return db.completeTaskRow(input)
+  .then(() => {
+    return list()
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+      db.close()
+    })
+}
+
 module.exports = {
   list,
   displayTodo,
   deleteTodo,
   addTodo,
   updateTodo,
-  searchTodo
+  searchTodo, 
+  markTaskComplete
 }
