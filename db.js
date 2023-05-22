@@ -14,31 +14,25 @@ function selectOne(id) {
   return db('todo').where('id', id).select()
 }
 
-function deleteTodo(id) {
-  id = +id
-  return db('todo')
-    .select()
-    .then((todos) => {
-      // console.log(todos)
-      // console.log(id)
+function deleteRow(id) {
+  return db('todo').where('id', id).select().del()
+}
 
-      todos.forEach((todo) => {
-        if (todo.id === id) {
-          todo.del()
-        }
-      })
-      console.log(todos)
-      db.destroy()
-    })
-    .catch((err) => {
-      console.log(err.message)
-      db.destroy()
-    })
+function addRow(JobName) {
+  return db('todo')
+    .insert([{ jobs: JobName }])
+    .into('todo')
+}
+
+function editRow(id, jobName) {
+  return db('todo').where('id', id).select().update({ jobs: jobName })
 }
 
 module.exports = {
   getTodos,
   close,
   selectOne,
-  deleteTodo,
+  deleteRow,
+  addRow,
+  editRow,
 }

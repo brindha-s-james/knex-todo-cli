@@ -29,28 +29,47 @@ function selectOneTodo(id) {
 }
 
 function deleteTodo(id) {
-  id = +id
-  return db('todo')
-    .select()
-    .then((todos) => {
-      // console.log(todos)
-      // console.log(id)
-
-      todos.forEach((todo) => {
-        if (todo.id === id) {
-          todo.del()
-        }
-      })
-      console.log(todos)
-      db.destroy()
+  return db
+    .deleteRow(id)
+    .then((data) => {
+      console.log(data)
     })
     .catch((err) => {
-      console.log(err.message)
-      db.destroy()
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
     })
 }
 
-4
+function addJob(jobName) {
+  return db
+    .addRow(jobName)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
+function updateJob(id, jobName) {
+  return db
+    .editRow(id, jobName)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.jobs}`)
@@ -65,4 +84,6 @@ module.exports = {
   list,
   selectOneTodo,
   deleteTodo,
+  addJob,
+  updateJob,
 }
