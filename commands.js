@@ -1,5 +1,6 @@
 const db = require('./db')
 
+//list all the tasks
 function list() {
   return db
     .getTodos()
@@ -14,13 +15,7 @@ function list() {
     })
 }
 
-function printTodos(todos) {
-  todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task} ${todo.completed}`)
-  })
-}
-
-
+//displays the selected task
 function displayTodo(id){
  return db
  .showTaskById(id)
@@ -35,11 +30,11 @@ function displayTodo(id){
 })
 }
 
-
+//deletes the selected task
 function deleteTask(id){
   return db
   .deleteTaskById(id)
-  .then((task) => {
+  .then(() => {
     console.log('Deleted')
   })
     .catch((err) => {
@@ -48,13 +43,9 @@ function deleteTask(id){
     .finally(() => {
       db.close()
     })
-  }
-
-  
-  function logError(err) {
-    console.error('Uh oh!', err.message)
 }
 
+//adds a new task
 function add(newTask){
   return db
   .addTasktoTodo(newTask)
@@ -69,6 +60,7 @@ function add(newTask){
     })
 }
 
+//updates an existing task by id
 function update(id, input){
   return db.updateTaskById(id, input)
   .then((updatedTask) =>{
@@ -82,6 +74,7 @@ function update(id, input){
   })
 }
 
+//updates existing task by id to be completed
 function complete(id){
   return db.completeTaskById(id)
   .then((completeTask) =>{
@@ -95,6 +88,7 @@ function complete(id){
   })
 }
 
+//searches by key word
 function searchTask(searchWord){
   return db.searchByWord(searchWord)
   .then((searchWord) =>{
@@ -107,6 +101,21 @@ function searchTask(searchWord){
     db.close()
   })
 }
+
+//prints format of todos
+function printTodos(todos) {
+  todos.forEach((todo) => {
+    console.info(`${todo.id}: ${todo.task} ${todo.completed}`)
+  })
+}
+
+//error
+function logError(err) {
+  console.error('Uh oh!', err.message)
+}
+
+
+
 
 module.exports = {
   list,
