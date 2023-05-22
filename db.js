@@ -6,11 +6,11 @@ function getTodos() {
 }
 
 function getTaskById(id) {
-  return db('todos').where('id', id)
+  return db('todos').where('id', id).orWhere('task', id)
 }
 
 function delTaskById(id) {
-  return db('todos').where('id', id).del()
+  return db('todos').where('id', id).del(['id', 'task'])
 }
 
 function addTask(input) {
@@ -22,12 +22,16 @@ function addTask(input) {
 }
 
 function update(target, update) {
-  console.log(target)
   return db('todos').where('id', target).orWhere('task', target).update({
     task: update
   },
   ['id', 'task'])
 }
+
+// function search(searchTerm) {
+//   return db('todos').where('task',)
+
+// }
 
 
 // Your DB functions go here

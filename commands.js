@@ -38,11 +38,12 @@ function delById(id) {
   return db
    .delTaskById(id)
     .then ((deleted) => {
-      if (deleted == true) {
-      console.log('Deleted Task ' + id)
-    } else {
-      console.log('Failed to Find Task ' + id)
-    }})
+      console.log(`Successfully deleted ${deleted}`)
+    //   if (deleted == true) {
+    //   console.log('Deleted Task ' + id)
+    // } else {
+    //   console.log('Failed to Find Task ' + id)}
+})
     .catch((err) => {
       logError(err)
     })
@@ -75,6 +76,24 @@ function updateTask(target, update) {
     })
   }
 
+  function searchTasks(searchTerm) {
+    return db
+    .getTodos()
+    .then((todos) => 
+    todos.forEach((task) => {
+      if (task.task.toLowerCase().match(searchTerm.toLowerCase()) != null) {
+        printTodos([task])
+      }
+      
+    }))
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+  }
+  
 
 function logError(err) {
   console.error('Uh oh!', err.message)
@@ -85,5 +104,6 @@ module.exports = {
   printById,
   delById,
   addTask,
-  updateTask
+  updateTask,
+  searchTasks
 }
