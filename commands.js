@@ -26,9 +26,9 @@ function logError(err) {
 
 function displayTodo(idNum) {
   return db
-  .displayRows(idNum)
+  .displayRow(idNum)
   .then((todo) => {
-    return console.log(todo.id + ": " + todo.name)
+    return console.log(`${todo.id}: ${todo.name}`)
   })
   .catch((err) => {
     logError(err)
@@ -38,7 +38,22 @@ function displayTodo(idNum) {
     })
 }
 
+function deleteTodo(idNum) {
+  return db.deleteRow(idNum)
+  .then(() => {
+    return list()
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+      db.close()
+    })
+}
+
+
 module.exports = {
   list,
   displayTodo,
+  deleteTodo,
 }
