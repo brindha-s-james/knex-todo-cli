@@ -19,6 +19,10 @@ function addRow(newTask) {
   return db('todos').insert(newTask)
 }
 
+function updateRow(idNum, updatedTask){
+  return db("todos").where('id', idNum).update("name", updatedTask)
+}
+
 function close() {
   db.destroy()
 }
@@ -29,5 +33,6 @@ module.exports = {
   close,
   displayRow,
   deleteRow,
-  addRow
+  addRow, 
+  updateRow,
 }

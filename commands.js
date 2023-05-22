@@ -67,10 +67,24 @@ function addTodo(input) {
     })
 }
 
+function updateTodo(id, input) {
+  return db.updateRow(id, input)
+  .then(() => {
+    return list()
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+      db.close()
+    })
+}
+
 
 module.exports = {
   list,
   displayTodo,
   deleteTodo,
-  addTodo
+  addTodo,
+  updateTodo,
 }

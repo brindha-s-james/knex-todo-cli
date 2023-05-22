@@ -22,6 +22,10 @@ switch (cmd) {
     commands.addTodo(userInputs[3])
     break
   
+  case 'update' :
+    commands.updateTodo(userInputs[3], userInputs[4])
+    break
+    
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
