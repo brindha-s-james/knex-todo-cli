@@ -2,37 +2,37 @@ const config = require('./knexfile').development
 const db = require('knex')(config)
 
 function getTodos() {
-  return db('todos').select()
+  return db('todo').select()
 }
 
 // Your DB functions go here
 
-function showTaskById(id){
- return db('todos').where('id', id)
+function showTaskById(id) {
+  return db('todo').where('id', id)
 }
 
-function deleteTaskById(id){
- return db('todos').where('id', id).del()
+function deleteTaskById(id) {
+  return db('todo').where('id', id).del()
 }
 
-function addTasktoTodo(newTask){
- return db('todos').insert({ task: newTask, completed: false })
+function addTasktoTodo(newTask) {
+  return db('todo').insert({ task: newTask, completed: false })
 }
 
-function updateTaskById(id, input){
-  return db('todos').where('id', id).update({task: input})
+function updateTaskById(id, input) {
+  return db('todo').where('id', id).update({ task: input })
 }
 
-function completeTaskById(id){
-  return db('todos').where('id', id).update({completed: true})
+function completeTaskById(id) {
+  return db('todo').where('id', id).update({ completed: true })
 }
 
-function searchByWord(searchWord){
-  return db('todos').whereLike('task', `%${searchWord}%`)
+function searchByWord(searchWord) {
+  return db('todo').whereLike('task', `%${searchWord}%`)
 }
 
-function sortByIncomplete(){
-  return db('todos').where('completed', false)
+function sortByIncomplete() {
+  return db('todo').where('completed', false)
 }
 
 function close() {
@@ -48,5 +48,5 @@ module.exports = {
   updateTaskById,
   searchByWord,
   completeTaskById,
-  sortByIncomplete
+  sortByIncomplete,
 }
