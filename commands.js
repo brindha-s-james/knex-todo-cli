@@ -83,6 +83,19 @@ function editTask(input, edit) {
     .finally(() => db.close)
 }
 
+//search function
+function searchTask(input) {
+  return db
+    .searchTask(input)
+    .then((todos) => {
+      console.log(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => db.close)
+}
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -93,4 +106,5 @@ module.exports = {
   deleteTask,
   insertTask,
   editTask,
+  searchTask,
 }

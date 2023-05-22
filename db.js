@@ -22,6 +22,10 @@ function insertNewTask(task) {
 function editTask(id, edit) {
   return db('todos').where('id', id).update({ task: edit })
 }
+
+function searchTask(input) {
+  return db('todos').whereLike('task', `%${input}%`)
+}
 // Your DB functions go here
 
 function close() {
@@ -35,4 +39,5 @@ module.exports = {
   deleteTaskbyId,
   insertNewTask,
   editTask,
+  searchTask,
 }
