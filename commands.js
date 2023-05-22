@@ -98,7 +98,11 @@ function completeTask (id) {
 
 function printTodos(todos) {
   todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task}`)
+ let completed = "complete"
+    if (todo.Completed === 0){
+    completed = "incomplete"
+    }
+    console.info(`${todo.id}: ${todo.task} ${completed}`)
   })
 }
 
