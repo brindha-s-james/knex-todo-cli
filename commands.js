@@ -28,6 +28,20 @@ function displayTodo(id) {
     })
 }
 
+function deleteToDo(id) {
+  return db
+    .delToDobyId(id)
+    .then((todos) => {
+      printTodos(todos)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -41,4 +55,5 @@ function logError(err) {
 module.exports = {
   list,
   displayTodo,
+  deleteToDo,
 }

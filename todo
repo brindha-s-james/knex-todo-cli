@@ -15,6 +15,10 @@ switch (cmd) {
     commands.displayTodo(userId)
     break
 
+  case 'done':
+    commands.deleteToDo(userId)
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
