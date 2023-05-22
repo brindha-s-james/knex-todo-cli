@@ -43,6 +43,12 @@ function findTask(task){
   .whereLike('task', `%${task}%`)
 }
 
+function completeTask(id) {
+  return db('todos')
+  .where('id', id)
+  .update({Completed: true})
+}
+
 
 
 
@@ -54,5 +60,6 @@ module.exports = {
   delTodo,
   addTodo,
   updateTask,
-  findTask
+  findTask,
+  completeTask
 }

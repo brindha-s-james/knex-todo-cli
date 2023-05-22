@@ -32,6 +32,10 @@ switch (cmd) {
   case 'search':
     commands.findTask(id)
     break
+
+  case 'completed':
+    commands.completeTask(id)
+    break
   
 
   default:

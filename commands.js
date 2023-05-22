@@ -83,6 +83,18 @@ function findTask(task){
   })
 }
 
+function completeTask (id) {
+  return db
+  .completeTask(id)
+  .then(() => {
+    console.log(`task #${id} has been completed`)
+  })
+  .catch(err => console.log(err.message))
+  .finally(() => {
+    db.close()
+  })
+}
+
 
 function printTodos(todos) {
   todos.forEach((todo) => {
@@ -100,5 +112,6 @@ module.exports = {
   taskDone,
   addTodo,
   updateTask,
-  findTask
+  findTask,
+  completeTask
 }
