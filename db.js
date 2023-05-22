@@ -1,6 +1,7 @@
 const { printTodos, logError } = require('./commands')
 
 // THIS IS WHERE WE INTERACT WITH THE DATABASE (3)
+//database queries on this page
 const config = require('./knexfile').development
 const db = require('knex')(config)
 
@@ -30,10 +31,16 @@ function addNewTaskTodo(str) {
  return db('todos').insert({task: str})
 }
 
+//update taskby id
+function updateTask( id, str) {
+  return db('todos').where('id', id).update({task: str})
+}
+
 module.exports = {
   getTodos,
   close,
   getTodoById,
   DeleteTodoById,
-  addNewTaskTodo
+  addNewTaskTodo,
+  updateTask
 }

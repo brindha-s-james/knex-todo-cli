@@ -1,13 +1,18 @@
 #!/usr/bin/env node
 
+//getting the functions from commands.js then/catch functions
 const commands = require('./commands')
 
+
+//process.argv variables
 const userInputs = process.argv
 const cmd = userInputs[2]
 // added userId
 const id = userInputs[3]
+const taskStr = userInputs[4]
 
 
+//switch statment of comands to use. calling the comands.js functions
 switch (cmd) {
   case 'list':
     commands.list()
@@ -22,10 +27,16 @@ switch (cmd) {
     commands.deleteToDo(id)
     break
 
-    //added to add another task ./todo add 'enter new task'
+    //added to add another task ./todo add 'enter new task here in a string'
   case 'add':
     commands.addNewTask(id)
     break
+
+    //update tasks ./todo update (add id without these brackets) 'enter updated task here in string'
+    case 'update':
+      commands.updateTodo(id, taskStr)
+      break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

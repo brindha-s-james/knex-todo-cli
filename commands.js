@@ -31,6 +31,7 @@ function selectOneTodo(id) {
     .getTodoById(id)
     .then((task) => {
       printTodos(task)
+ //     console.log(`todo #'${todos.id} + ${todos.task}`)
     })
     .catch((err) => {
       logError(err)
@@ -56,9 +57,22 @@ function deleteToDo(id) {
 }
 
 //add new task
-
 function addNewTask(str) {
   return db.addNewTaskTodo(str)
+  .then((todos) => {
+    printTodos(todos)
+  })
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close
+  })
+}
+
+//update task
+function updateTodo(id, str) {
+  return db.updateTask(id, str)
   .then((todos) => {
     printTodos(todos)
   })
@@ -76,5 +90,6 @@ module.exports = {
   logError,
   selectOneTodo,
   deleteToDo,
-  addNewTask
+  addNewTask,
+  updateTodo
 }
