@@ -16,13 +16,9 @@ function list() {
 
 function display(id) {
   return db
-    .getTodos()
-    .then((todos) => {
-      todos.forEach(todo => {
-        if (todo.id === +id) {
-          console.log("task " + id + ": " + todo.task)
-        }
-      })
+    .getTodo(id)
+    .then(todo => {
+      printTodos(todo)
     })
     .catch((err) => {
       console.log(err.message)
