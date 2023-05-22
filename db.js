@@ -5,7 +5,29 @@ function getTodos() {
   return db('todos').select()
 }
 
-// Your DB functions go here
+function getTodoById(id) {
+  return db('todos').select().where({ id })
+}
+
+function insertTodo(task) {
+  return db('todos').insert({ task })
+}
+
+function deleteTodo(id) {
+  return db('todos').del().where({ id })
+}
+
+function updateTodo(id, updatedTask) {
+  return db('todos').update({ task: updatedTask }).where({ id })
+}
+
+function searchTask(search) {
+  return db('todos').select().whereLike('task', `%${search}%`)
+}
+
+function updateComplete(id, name) {
+  return db('todos').update({ completed: true, user: name }).where({ id })
+}
 
 function close() {
   db.destroy()
@@ -13,5 +35,11 @@ function close() {
 
 module.exports = {
   getTodos,
+  getTodoById,
+  insertTodo,
+  deleteTodo,
+  updateTodo,
+  searchTask,
+  updateComplete,
   close,
 }

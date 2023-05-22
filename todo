@@ -4,10 +4,36 @@ const commands = require('./commands')
 
 const userInputs = process.argv
 const cmd = userInputs[2]
+const inputOne = userInputs[3]
+const inputTwo = userInputs[4]
 
 switch (cmd) {
   case 'list':
     commands.list()
+    break
+
+  case 'display':
+    commands.singleTodo(inputOne)
+    break
+
+  case 'delete':
+    commands.deleteTask(inputOne)
+    break
+
+  case 'add':
+    commands.addTask(inputOne)
+    break
+
+  case 'update':
+    commands.updateTask(inputOne, inputTwo)
+    break
+
+  case 'search':
+    commands.search(inputOne)
+    break
+
+  case 'done':
+    commands.complete(inputOne, inputTwo)
     break
 
   default:
