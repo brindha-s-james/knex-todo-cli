@@ -38,6 +38,12 @@ function updateTask(id, task) {
   .update({task: task})
 }
 
+function findTask(task){
+  return db('todos')
+  .select()
+  .where('task', task)
+}
+
 
 
 module.exports = {
@@ -46,5 +52,6 @@ module.exports = {
   getTodo,
   delTodo,
   addTodo,
-  updateTask
+  updateTask,
+  findTask
 }

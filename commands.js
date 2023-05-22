@@ -67,6 +67,21 @@ function display(id) {
     })
 }
 
+function findTask(task){
+  return db
+  .findTask(task)
+  .then((todo) => {
+    console.log(`${todo[0].id}: ${todo[0].task}`)
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.task}`)
@@ -82,5 +97,6 @@ module.exports = {
   display,
   taskDone,
   addTodo,
-  updateTask
+  updateTask,
+  findTask
 }
