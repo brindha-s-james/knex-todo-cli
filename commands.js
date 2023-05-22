@@ -34,6 +34,24 @@ function printById(id) {
     })
 }
 
+function delById(id) {
+  return db
+   .delTaskById(id)
+    .then ((deleted) => {
+      if (deleted == true) {
+      console.log('Deleted Task ' + id)
+    } else {
+      console.log('Failed to Find Task ' + id)
+    }})
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
+
 
 
 function logError(err) {
@@ -42,5 +60,6 @@ function logError(err) {
 
 module.exports = {
   list,
-  printById
+  printById,
+  delById,
 }
