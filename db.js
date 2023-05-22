@@ -7,11 +7,18 @@ function getTodos() {
 
 // Your DB functions go here
 
+function displayRows(idNum) {
+  return db('todos').where('id', idNum ).select().first()
+}
+
+
 function close() {
   db.destroy()
 }
 
+
 module.exports = {
   getTodos,
   close,
+  displayRows,
 }
