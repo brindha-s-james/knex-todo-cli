@@ -27,6 +27,11 @@ switch (cmd) {
   case 'updateJob':
     commands.updateJob(firstParam, secondParam)
     break
+
+  case 'search':
+    commands.findTheJob(firstParam)
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

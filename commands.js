@@ -70,6 +70,20 @@ function updateJob(id, jobName) {
     })
 }
 
+function findTheJob(job) {
+  return db
+    .findJob(job)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+}
+
 function printTodos(todos) {
   todos.forEach((todo) => {
     console.info(`${todo.id}: ${todo.jobs}`)
@@ -86,4 +100,5 @@ module.exports = {
   deleteTodo,
   addJob,
   updateJob,
+  findTheJob,
 }

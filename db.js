@@ -28,6 +28,10 @@ function editRow(id, jobName) {
   return db('todo').where('id', id).select().update({ jobs: jobName })
 }
 
+function findJob(job) {
+  return db('todo').whereLike('jobs', `%${job}%`).select()
+}
+
 module.exports = {
   getTodos,
   close,
@@ -35,4 +39,5 @@ module.exports = {
   deleteRow,
   addRow,
   editRow,
+  findJob,
 }
