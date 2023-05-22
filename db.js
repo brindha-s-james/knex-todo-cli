@@ -21,11 +21,11 @@ function addTask(input) {
   )
 }
 
-function update(target, update) {
+function update(target, update, field) {
   return db('todos').where('id', target).orWhere('task', target).update({
-    task: update
+    [field]: update
   },
-  ['id', 'task'])
+  ['id', 'task', 'completed'])
 }
 
 // function search(searchTerm) {

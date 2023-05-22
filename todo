@@ -29,6 +29,14 @@ switch (cmd) {
     commands.searchTasks(userInputs[3])
     break
 
+  case 'complete':
+    commands.completeTask(userInputs[3], true)
+    break
+
+  case 'incomplete':
+    commands.completeTask(userInputs[3], false)
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }

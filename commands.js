@@ -16,7 +16,7 @@ function list() {
 
 function printTodos(todos) {
   todos.forEach((todo) => {
-    console.info(`${todo.id}: ${todo.task}`)
+    console.info(`${todo.id}: ${todo.task}, Completed: ${Boolean(todo.completed)}`)
   })
 }
 
@@ -66,7 +66,7 @@ function addTask(input) {
 
 function updateTask(target, update) {
   return db
-    .update(target, update)
+    .update(target, update, 'task')
     .then((result) => console.log(`Task at position ${result[0].id} set to ${result[0].task}`))
     .catch((err) => {
       logError(err)
@@ -94,6 +94,20 @@ function updateTask(target, update) {
     })
   }
   
+function completeTask(id, bool) {
+  let status = 'complete'
+  if (bool == false) status = 'incomplete'  
+  return db
+  .update(id, bool, 'completed')
+  .then((task) => console.log(`'${task[0].task}' set to ${status}!`))
+  .catch((err) => {
+    logError(err)
+  })
+  .finally(() => {
+    db.close()
+  })
+}
+
 
 function logError(err) {
   console.error('Uh oh!', err.message)
@@ -105,5 +119,6 @@ module.exports = {
   delById,
   addTask,
   updateTask,
-  searchTasks
+  searchTasks,
+  completeTask
 }
