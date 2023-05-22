@@ -10,6 +10,7 @@ const cmd = userInputs[2]
 // added userId
 const id = userInputs[3]
 const taskStr = userInputs[4]
+const word = userInputs[5]
 
 
 //switch statment of comands to use. calling the comands.js functions
@@ -35,6 +36,10 @@ switch (cmd) {
     //update tasks ./todo update (add id without these brackets) 'enter updated task here in string'
     case 'update':
       commands.updateTodo(id, taskStr)
+      break
+
+    case 'search':
+      commands.searchByWord(word)
       break
 
   default:

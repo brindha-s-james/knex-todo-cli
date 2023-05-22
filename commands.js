@@ -84,6 +84,20 @@ function updateTodo(id, str) {
   })
 }
 
+// search for a task by word
+function searchByWord(word) {
+  return db.searchTaskByWord(word)
+    .then((tasks) => {
+      printTodos(tasks)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close
+    })
+}
+
 module.exports = {
   list,
   printTodos,
@@ -91,5 +105,6 @@ module.exports = {
   selectOneTodo,
   deleteToDo,
   addNewTask,
-  updateTodo
+  updateTodo,
+  searchByWord
 }
