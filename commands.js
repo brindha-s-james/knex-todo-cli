@@ -51,8 +51,17 @@ function delById(id) {
     })
 }
 
-
-
+function addTask(input) {
+  return db
+    .addTask(input)
+    .then((result) => console.log(`Added entry '${result[0].task}' at position ${result[0].id}`))
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+  }
 
 function logError(err) {
   console.error('Uh oh!', err.message)
@@ -62,4 +71,5 @@ module.exports = {
   list,
   printById,
   delById,
+  addTask
 }

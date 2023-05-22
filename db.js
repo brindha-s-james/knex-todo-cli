@@ -13,6 +13,14 @@ function delTaskById(id) {
   return db('todos').where('id', id).del()
 }
 
+function addTask(input) {
+  return db('todos').insert({
+    task: input
+  },
+  ['id', 'task']
+  )
+}
+
 
 // Your DB functions go here
 
@@ -24,6 +32,7 @@ module.exports = {
   getTodos,
   close,
   getTaskById,
-  delTaskById
+  delTaskById,
+  addTask
 }
 

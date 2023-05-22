@@ -18,6 +18,10 @@ switch (cmd) {
     commands.delById(userInputs[3])
     break
 
+  case 'add':
+    commands.addTask(userInputs[3])
+    break
+
   default:
     console.log(`I don't understand that command: ${cmd}`)
 }
