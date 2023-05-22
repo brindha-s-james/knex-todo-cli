@@ -12,12 +12,12 @@ function getTaskById(id) {
 }
 
 function deleteTaskbyId(id) {
-  return db('todos').where('id', id)
-  .del()
+  return db('todos').where('id', id).del()
 }
 
-
-
+function insertNewTask(task) {
+  return db('todos').insert({ owner: 'tayla', task: task, complete: false })
+}
 
 // Your DB functions go here
 
@@ -30,4 +30,5 @@ module.exports = {
   close,
   getTaskById,
   deleteTaskbyId,
+  insertNewTask,
 }
