@@ -96,6 +96,19 @@ function searchTask(input) {
     .finally(db.close)
 }
 
+function completeTask(input) {
+  return db
+    .completeTask(input)
+    .then((todos) => {
+      console.log('task completed')
+      displayId(input)
+    })
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(db.close)
+}
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -107,4 +120,5 @@ module.exports = {
   insertTask,
   editTask,
   searchTask,
+  completeTask,
 }
