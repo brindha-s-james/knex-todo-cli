@@ -21,6 +21,14 @@ function addTask(input) {
   )
 }
 
+function update(target, update) {
+  console.log(target)
+  return db('todos').where('id', target).orWhere('task', target).update({
+    task: update
+  },
+  ['id', 'task'])
+}
+
 
 // Your DB functions go here
 
@@ -33,6 +41,7 @@ module.exports = {
   close,
   getTaskById,
   delTaskById,
-  addTask
+  addTask,
+  update
 }
 

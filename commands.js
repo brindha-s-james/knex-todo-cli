@@ -63,6 +63,19 @@ function addTask(input) {
     })
   }
 
+function updateTask(target, update) {
+  return db
+    .update(target, update)
+    .then((result) => console.log(`Task at position ${result[0].id} set to ${result[0].task}`))
+    .catch((err) => {
+      logError(err)
+    })
+    .finally(() => {
+      db.close()
+    })
+  }
+
+
 function logError(err) {
   console.error('Uh oh!', err.message)
 }
@@ -71,5 +84,6 @@ module.exports = {
   list,
   printById,
   delById,
-  addTask
+  addTask,
+  updateTask
 }
