@@ -2,13 +2,41 @@
 
 const commands = require('./commands')
 
-const userInputs = process.argv
+const userInputs = process.argv //displays an array
+//I DONT UNDERSTAND THIS//
 const cmd = userInputs[2]
+
+// const firstParam =userInputs[3]
+// const secondParam =userInputs[4]
+//console.log(userInputs)
 
 switch (cmd) {
   case 'list':
     commands.list()
     break
+//5.
+  case 'selectTaskbyId':
+    commands.selectOneTaskbyIdCmd(/*what goes in here */)
+  break
+//6. delete task by user once its one. eg ./todo done 1
+  case 'deleteTaskById':
+    commands.deleteTaskByIdCmd(/*what goes in here*/)
+  break
+//7. add a new task by entering a command such as ./todo add 'pet cat'
+  case 'addNewTask':
+    commands.addNewTaskCmd(/*what goes in here*/)
+  break
+//8.Update a task by ID
+  case 'updateTask':
+    commands.updateTaskCmd(/*what goes in here*/)
+  break
+
+  //9.enable user to search for task containing a search term eg. ./todo search 'wire' =====
+  case 'searchtaskByWord':
+  commands.searchTaskByWordCmd(/*what goes in here*/)
+  break
+
+
 
   default:
     console.log(`I don't understand that command: ${cmd}`)
