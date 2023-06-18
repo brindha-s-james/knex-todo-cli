@@ -3,39 +3,43 @@
 const commands = require('./commands')
 
 const userInputs = process.argv //displays an array
-//I DONT UNDERSTAND THIS//
-const cmd = userInputs[2]
 
-// const firstParam =userInputs[3]
-// const secondParam =userInputs[4]
-//console.log(userInputs)
+const cmd = userInputs[2]
+const id = userInputs[3]
+const task = userInputs[4]
+
 
 switch (cmd) {
   case 'list':
     commands.list()
     break
 //5.
-  case 'selectTaskbyId':
-    commands.selectOneTaskbyIdCmd(/*what goes in here */)
+  case 'display':
+    commands.selectOneTodo(id)
   break
 //6. delete task by user once its one. eg ./todo done 1
-  case 'deleteTaskById':
-    commands.deleteTaskByIdCmd(/*what goes in here*/)
+  case 'delete':
+    commands.deleteTaskById(id)
   break
 //7. add a new task by entering a command such as ./todo add 'pet cat'
-  case 'addNewTask':
-    commands.addNewTaskCmd(/*what goes in here*/)
+  case 'add':
+    commands.addNewTask(task)
   break
-//8.Update a task by ID
-  case 'updateTask':
-    commands.updateTaskCmd(/*what goes in here*/)
+//8.Update a task by ID with a command such as ./todo update 1 'clean my room thoroughly'
+  case 'update':
+    commands.updateTask(id, task)
   break
 
   //9.enable user to search for task containing a search term eg. ./todo search 'wire' =====
-  case 'searchtaskByWord':
-  commands.searchTaskByWordCmd(/*what goes in here*/)
+  case 'searchtask':
+  commands.searchTaskByWord(`task${task}`)
   break
 
+  //11.Enable users to mark a task complete, without deleting it from the database
+
+  case 'complete':
+    commands.taskCompleted(id, task)
+    break
 
 
   default:

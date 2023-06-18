@@ -14,11 +14,11 @@ function list() {
     })
 }
 //5.show a task by Id=========
-function selectOneTaskbyIdCmd (id){
+function selectOneTodo (id){
    return db
-    .selectOneTaskbyIdDb(id)
-    .then((task) => {
-      console.log(task)
+    .selectOneTodobyIdDb(id)
+    .then((todos) => {
+      printTodos(todos)
     })
     .catch((err) => {
       logError('select one task by id:' + err)
@@ -29,40 +29,39 @@ function selectOneTaskbyIdCmd (id){
 }
 
 //6. delete task by user once its one. eg ./todo done 1=========
-function deleteTaskByIdCmd(id){
+function deleteTodoById(id){
   return db
-  .deleteTaskByIdDb(id)
-  .then(() => {
-    console.log('deleted')
-  })
-  .catch((err) => {
-    logError('delete task by id' + err)
-  })
-  .finally(() => {
-    db.close()
-  })
-}
-//7. add a new task by entering a command such as ./todo add 'pet cat'
-  function addNewTaskCmd (newTask){
-
-    return db
-    .addNewTaskDb (newTask)
-    .then ((newTask)=>{
-console.log(`This is the${newTask}` )
+    .deleteTodoByIdDb(id)
+    .then(() => {
+      console.log(`Task deleted: ${id}`)
     })
     .catch((err) => {
-      logError('add new task: ' + err)
+      logError('delete task by id' + err)
     })
     .finally(() => {
       db.close()
-    })
+  })
+}
+//7. add a new task by entering a command such as ./todo add 'pet cat'
+  function addNewTask (newTask){
+    return db
+      .addNewTaskDb (newTask)
+      .then ((newTask)=>{
+        console.log(`New task added:${newTask}`)
+      })
+      .catch((err) => {
+        logError('add new task: ' + err)
+      })
+      .finally(() => {
+        db.close()
+      })
   }
 //8.Update a task by ID
-function updateTaskCmd (id, task){
+function updateTask (id, updatedTask){
   return db
-   .updateTaskDb (id, task)
+   .updateTaskDb (id, updatedTask)
    .then (() =>{
-    console.log( `${task} updated` )
+    console.log( `Task updated:${id}.${updatedTask}` )
     })
     .catch ((err)=>{
       logError ('task not updated: ' + err)
@@ -72,23 +71,30 @@ function updateTaskCmd (id, task){
    })
 }
 //9.enable user to search for task containing a search term eg. ./todo search 'wire' =====
-function searchTaskByWordCmd(searchWord) {
+function searchTaskByWord(searchWord) {
   return db
-  .searchTaskByWord (searchWord) 
-  .then ((task)=>
-    printTodos(task))
-  .catch ((err) =>{
-    logError('word not found: '+ err)})
-  .finally(()=>{
-    db.close()
-})
+    .searchTaskByWordDb (searchWord) 
+    .then ((task)=>
+      printTodos(task))
+    .catch ((err) =>{
+      logError('word not found: '+ err)})
+    .finally(()=>{
+      db.close()
+    })
+}
+
+//.11 Enable users to mark a task complete, without deleting it from the database
+  function taskCompleted(id, task){
+    return db
+      .taskCompeleteDb(id, task)
+      .then (()=>
+      console.log(`Task completed:${id}.${task}`))
+      .catch ((err) =>{
+        logError('Task complete not updated: '+ err)})
+      .finally(()=>{
+        db.close()
+      })
   }
-
-
-
-
-
-
 
 //====================
 
@@ -104,9 +110,10 @@ function logError(err) {
 
 module.exports = {
   list,
-  selectOneTaskbyIdCmd,
-  deleteTaskByIdCmd,
-  addNewTaskCmd,
-  updateTaskCmd,
-  searchTaskByWordCmd,
+  selectOneTodo,
+  deleteTodoById,
+  addNewTask,
+  updateTask,
+  searchTaskByWord,
+  taskCompleted
 }
